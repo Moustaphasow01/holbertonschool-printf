@@ -12,7 +12,7 @@
 int _printf(const char *format, ...)
 {
 
-  if (!fmt || !_strcmp(fmt, "%"))
+  if (!format || !_strcmp(format, "%"))
     return (-1);
   unsigned int (*pfunc)(va_list);
   const char *p;
