@@ -11,14 +11,13 @@
 
 int _printf(const char *format, ...)
 {
-
+  int (*pfunc)(va_list);
+  const char *p;
+  va_list lst;
+  int count = 0;
+  
   if (!format || !_strcmp(format, "%"))
     return (-1);
-   int (*pfunc)(va_list);
-  const char *p;
-  int count = 0;
-	va_list lst;
-
 	va_start(lst, format);
 	for (p = format; *p; p++)
 	  {
