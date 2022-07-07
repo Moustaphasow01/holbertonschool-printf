@@ -19,7 +19,7 @@ int (*print_check(char s))(va_list)
 		{'s', print_string},
 		{'\0', NULL},
 	};
-
+	int i;
 	for (i = 0; i < 6; i++)
 	  if (func_arr[i].c == s)
 	    return (func_arr[i].f);
