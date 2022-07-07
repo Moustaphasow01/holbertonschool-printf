@@ -8,7 +8,7 @@
  * printf
  */
 int _printf(const char *format, ...);
-int print_check(const char * const format, ...);
+int (*print_check(char s))();
 
 int print_char(va_list lst);
 int print_string(va_list lst);
