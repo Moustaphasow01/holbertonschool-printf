@@ -1,46 +1,51 @@
 #include "main.h"
 
 /**
- * _printf - Prints 
- * 
+ *_printf - produces output according to a format
+ *@format: format string containing the characters and the specifiers 
+ * this function will call the print_check() function that will
+ * determine which printing function to call depending on the conversion
+ * specifiers contained into format
+ * Return: length of the output 
  */
 
 int _printf(const char *format, ...)
 {
-	prt_f prt[] = {
-		{'c', print_char},
-		{'s', print_string},
-		{'d', print_int},
-		{'i', print_int},
-		{'\0', NULL},
-	};
 
-	int i = 0, count = 0, j;
+  if (!fmt || !_strcmp(fmt, "%"))
+    return (-1);
+  unsigned int (*pfunc)(va_list);
+  const char *p;
+  int count = 0;
 	va_list lst;
 
 	va_start(lst, format);
-
-	while (format[i])
-	{
-		j = 0;
-		if (format[i] == '%')
-		{
-			while (prt[j].c)
-			{
-				if (prt[j].c == format[i + 1])
-				{
-					count += prt[j].f(lst);
-				}
-				j++;
-			}
-			i++;
-		}
-		else{
-			write(STDOUT_FILENO, &format[i], 1);
-			count += 1;
-		}
-		i++;
-	}
+	for (p = fmt; *p; p++)
+	  {
+	    if (*p == '%')
+	      {
+		p++;
+		if (*p == '%')
+		  {
+		    _putchar('%');
+		    count++;
+		    continue;
+		  }
+		pfunc = get_print(*p);
+		if (!pfunc)
+		  {
+		    _putchar('%');
+		    _putchar(*p);
+		    count += 2;
+		  } else
+		  count += pfunc(lst);
+	      } else
+	      {
+		count++;
+		_putchar(*p);
+	      }
+	  }
 	va_end(lst);
 	return (count);
 }
+	
