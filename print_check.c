@@ -21,7 +21,7 @@ int (*print_check(char s))(va_list)
 	};
 	int i;
 	for (i = 0; i < 6; i++)
-	  if (func_arr[i].c == s)
-	    return (func_arr[i].f);
+	  if (prt[i].c == s)
+	    return (prt[i].f);
 	return (NULL);
 }
