@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-
+/**
+ * printf
+ */
 int _printf(const char *format, ...);
 int print_check(const char * const format, ...);
 
@@ -26,14 +28,16 @@ int _putchar(char c);
 int _puts(char *str);
 
 /**
- * @brief 
- * 
+ * struct print_function - struct to choose the right function depending
+ * on the format specifier passed to _printf()
+ * @c: format specifier
+ * @f: pointer to the correct printing function
  */
-
 typedef struct print_function
 {
 	char c;
-	int (*f)(va_list);
+	int (*f)(va_list a);
 } prt_f;
 
+int _strcmp(const char *s1, const char *s2);
 #endif
