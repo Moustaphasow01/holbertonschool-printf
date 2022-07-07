@@ -14,13 +14,13 @@ int _printf(const char *format, ...)
 
   if (!format || !_strcmp(format, "%"))
     return (-1);
-  unsigned int (*pfunc)(va_list);
+   int (*pfunc)(va_list);
   const char *p;
   int count = 0;
 	va_list lst;
 
 	va_start(lst, format);
-	for (p = fmt; *p; p++)
+	for (p = format; *p; p++)
 	  {
 	    if (*p == '%')
 	      {
@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 		    count++;
 		    continue;
 		  }
-		pfunc = get_print(*p);
+		pfunc =print_check(*p);
 		if (!pfunc)
 		  {
 		    _putchar('%');
