@@ -17,6 +17,7 @@ int (*print_check(char s))(va_list)
 		{'c', print_char},
 		{'d', print_int},
 		{'s', print_string},
+		{'u', print_unsigned},
 		{'\0', NULL},
 	};
 	int i;
