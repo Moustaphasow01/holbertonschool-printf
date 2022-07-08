@@ -1,50 +1,40 @@
 #include "main.h"
-
 /**
- *_printf - produces output according to a format
- *@format: format string containing the characters and the specifiers 
- * this function will call the print_check() function that will
+ * _printf - produces output according to a format
+ * @format: format string containing the characters and the specifiers
+ * Description: this function will call the print_check() function that will
  * determine which printing function to call depending on the conversion
  * specifiers contained into format
- * Return: length of the output 
+ * Return: length of the formatted output string
  */
-
 int _printf(const char *format, ...)
-{
-  int (*pfunc)(va_list);
-  const char *p;
-  va_list lst;
-  int count = 0;
-  
-  if (!format || !_strcmp(format, "%"))
-    return (-1);
-	va_start(lst, format);
+	{
+	int (*pfunc)(va_list);
+	const char *p;
+	va_list lmt;
+	register int count = 0;
+	va_start(lmt, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
 	for (p = format; *p; p++)
-	  {
-	    if (*p == '%')
-	      {
-		p++;
+	{
 		if (*p == '%')
-		  {
-		    _putchar('%');
-		    count++;
-		    continue;
-		  }
-		pfunc =print_check(*p);
-		if (!pfunc)
-		  {
-		    _putchar('%');
-		    _putchar(*p);
-		    count += 2;
-		  } else
-		  count += pfunc(lst);
-	      } else
-	      {
-		count++;
-		_putchar(*p);
-	      }
-	  }
-	va_end(lst);
-	return (count);
-}
-	
+		{
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			pfunc = print_check(*p);
+			count += (pfunc)
+				? pfunc(lmt)
+				: _printf("%%%c", *p);
+		} else
+			count += _putchar(*p);}
+			_putchar(-1);
+			va_end(arguments)return (count);
+	}
+
+			
+		
