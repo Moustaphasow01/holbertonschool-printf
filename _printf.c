@@ -11,9 +11,9 @@ int _printf(const char *format, ...)
 	{
 	int (*pfunc)(va_list);
 	const char *p;
-	va_list lmt;
+	va_list lst;
 	register int count = 0;
-	va_start(lmt, format);
+	va_start(lst, format);
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	for (p = format; *p; p++)
