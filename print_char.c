@@ -1,14 +1,12 @@
 #include "main.h"
 
 /**
- * _print_c - Prints characters
- * @lst: is the list
+ * print_char - prints a character
+ * @lst: va_list arguments from _printf
+ * Return: number of char printed
  */
-
 int print_char(va_list lst)
 {
-	char c = va_arg(lst, int);
-	write(STDOUT_FILENO, &c, 1);
-
+	_putchar(va_arg(lst, int));
 	return (1);
 }
