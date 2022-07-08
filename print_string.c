@@ -12,17 +12,21 @@ int _strlen(char *s) {
 	return (i);
 }
 
-/**
- * _print_c - Prints characters
- * @lst: is the list
- */
 
+/**
+ * print_string - loops through a string and prints
+ * every character
+ * @lst: va_list arguments from _printf
+ * Return: number of char printed
+ */
 int print_string(va_list lst)
 {
-	char *s = va_arg(lst, char*);
-	int len = _strlen(s);
+	int i = 0;
+	char *s = va_arg(lst, char *);
 
-	write(1, s, len);
-
-	return (len);
+	if (!s)
+		s = "(null)";
+	while (s[i])
+		_putchar(s[i++]);
+	return (i);
 }
