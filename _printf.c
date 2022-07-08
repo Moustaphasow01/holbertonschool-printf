@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			}
 			pfunc = print_check(*p);
 			count += (pfunc)
-				? pfunc(lmt)
+				? pfunc(lst)
 				: _printf("%%%c", *p);
 		} else
 			count += _putchar(*p);}
